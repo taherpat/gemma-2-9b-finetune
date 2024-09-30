@@ -15,7 +15,7 @@ model_name = 'google/gemma-2-9b-it'
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 tokenizer.pad_token = tokenizer.eos_token
 
-model = AutoModelForCausalLM.from_pretrained(model_name, trust_remote_code = True, use_cache = False, torch_dtype = getattr(torch, "bfloat16"))
+model = AutoModelForCausalLM.from_pretrained(model_name, trust_remote_code = True, use_cache = False, torch_dtype = torch.float16)
 lora_alpha = 8
 lora_dropout = 0.1
 lora_r = 32
@@ -49,7 +49,7 @@ training_arguments = TrainingArguments(
     save_steps=save_steps,
     logging_steps=logging_steps,
     learning_rate=learning_rate,
-    bf16=True,
+    bf16=False,
     max_grad_norm=max_grad_norm,
     max_steps=max_steps,
     warmup_ratio=warmup_ratio,
