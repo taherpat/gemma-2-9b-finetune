@@ -15,7 +15,7 @@ model_name = 'google/gemma-2-9b-it'
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 tokenizer.pad_token = tokenizer.eos_token
 print("Loading Model.....")
-model = AutoModelForCausalLM.from_pretrained(model_name, trust_remote_code = True, use_cache = False, torch_dtype = torch.float16)
+model = AutoModelForCausalLM.from_pretrained(model_name, trust_remote_code = True, use_cache = False, torch_dtype = torch.float16,device = "cuda:0")
 print("Model Loaded!!!")
 lora_alpha = 8
 lora_dropout = 0.1
